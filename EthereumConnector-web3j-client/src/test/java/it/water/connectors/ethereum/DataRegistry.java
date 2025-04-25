@@ -47,7 +47,6 @@ public class DataRegistry extends Contract {
 
     public static final Event NOTARIZED_EVENT = new Event("Notarized", 
             Arrays.<TypeReference<?>>asList(new TypeReference<Address>(true) {}, new TypeReference<Bytes32>() {}));
-    ;
 
     @Deprecated
     protected DataRegistry(String contractAddress, Web3j web3j, Credentials credentials, BigInteger gasPrice, BigInteger gasLimit) {

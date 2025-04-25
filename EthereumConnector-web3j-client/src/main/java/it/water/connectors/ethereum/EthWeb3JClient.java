@@ -29,6 +29,7 @@ import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.DefaultBlockParameterName;
 import org.web3j.protocol.core.methods.response.EthGetBalance;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
+import org.web3j.protocol.exceptions.TransactionException;
 import org.web3j.tx.RawTransactionManager;
 import org.web3j.tx.TransactionManager;
 import org.web3j.tx.Transfer;
@@ -112,10 +113,17 @@ public class EthWeb3JClient implements EthClient {
     }
 
     @Override
-    public EthTransactionReceipt transferEther(String destination, BigDecimal amount) throws Exception {
+    public EthTransactionReceipt transferEther(String destination, BigDecimal amount) throws InterruptedException {
         if (this.credentials == null)
             throw new IllegalStateException("credentials is null");
-        TransactionReceipt receipt = Transfer.sendFunds(this.web3j, this.credentials, destination, amount, Convert.Unit.ETHER).send();
+        TransactionReceipt receipt = null;
+        try {
+            receipt = Transfer.sendFunds(this.web3j, this.credentials, destination, amount, Convert.Unit.ETHER).send();
+        } catch (InterruptedException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new WaterRuntimeException(e);
+        }
         return wrapEthereumTransactionReceipt(receipt);
     }
 

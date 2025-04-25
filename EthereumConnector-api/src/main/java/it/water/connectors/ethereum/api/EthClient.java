@@ -37,7 +37,7 @@ public interface EthClient {
      * @return
      * @throws Exception
      */
-    EthTransactionReceipt transferEther(String destination, BigDecimal amount) throws Exception;
+    EthTransactionReceipt transferEther(String destination, BigDecimal amount) throws InterruptedException;
 
     /**
      * @return
@@ -64,4 +64,5 @@ public interface EthClient {
      * @param privateKey
      */
     void setCredentials(String privateKey);
+
 }
