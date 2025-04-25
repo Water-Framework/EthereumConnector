@@ -23,6 +23,7 @@ dependencies {
     implementation project(":EthereumConnector-api")
     implementation project(":EthereumConnector-model")
     implementation 'org.web3j:core:4.12.2'
+    implementationInclude 'org.web3j:core:4.12.2'
 
     testAnnotationProcessor 'org.projectlombok:lombok:' + project.lombokVersion
     testAnnotationProcessor('org.atteo.classindex:classindex:' + project.atteoClassIndexVersion)
