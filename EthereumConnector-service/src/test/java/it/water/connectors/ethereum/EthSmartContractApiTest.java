@@ -97,9 +97,9 @@ class EthSmartContractApiTest implements Service {
         Assertions.assertNotNull(smartContractEditorRole);
         //impersonate admin so we can test the happy path
         adminUser = userManager.findUser("admin");
-        smartContractManagerUser = userManager.addUser("manager", "name", "lastname", "manager@a.com", "TempPassword1_", "salt", false);
-        smartContractViewerUser = userManager.addUser("viewer", "name", "lastname", "viewer@a.com", "TempPassword1_", "salt", false);
-        smartContractEditorUser = userManager.addUser("editor", "name", "lastname", "editor@a.com", "TempPassword1_", "salt", false);
+        smartContractManagerUser = userManager.addUser("smartContracManager", "smartContracManager", "smartContracManager", "snManager@a.com", "TempPassword1_", "salt", false);
+        smartContractViewerUser = userManager.addUser("smartContractViewer", "smartContractViewer", "smartContractViewer", "smViewer@a.com", "TempPassword1_", "salt", false);
+        smartContractEditorUser = userManager.addUser("smartContractEditor", "smartContractEditor", "smartContractEditor", "smEditor@a.com", "TempPassword1_", "salt", false);
         //starting with admin permissions
         roleManager.addRole(smartContractManagerUser.getId(), smartContractManagerRole);
         roleManager.addRole(smartContractViewerUser.getId(), smartContractViewerRole);

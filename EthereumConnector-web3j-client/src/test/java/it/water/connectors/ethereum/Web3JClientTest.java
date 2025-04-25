@@ -31,7 +31,7 @@ import static org.awaitility.Awaitility.await;
 @ExtendWith(WaterTestExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class Web3JClientTest implements Service {
+class Web3JClientTest implements Service {
     private static Logger logger = LoggerFactory.getLogger(Web3JClientTest.class);
     private static final String CONTRACT_DEFAULT_NAME = "MY_DATA_CERTIFICATION";
     private static final String ACCOUNT_PRIVATE_KEY = "5c7a050c7b0e3a6896e9667a6dff3a6b389c665aaed218c352071890c05520ee";
@@ -54,7 +54,7 @@ public class Web3JClientTest implements Service {
      * This method initializes ganache and waits for it
      */
     @BeforeAll
-    public void initGanache() {
+    void initGanache() {
         localBlockChain = new EthBlockchain("http", "localhost", GANACHE_PORT);
         ProcessBuilder pb = new ProcessBuilder();
         pb.command("ganache-cli", "-m", GANACHE_MNEMONIC, "-p", GANACHE_PORT);
@@ -77,7 +77,7 @@ public class Web3JClientTest implements Service {
      * Closes ganache after all tests
      */
     @AfterAll
-    public void closeGanache() {
+    void closeGanache() {
         ganacheProcess.destroy();
         await()
                 .atMost(10, TimeUnit.SECONDS)
@@ -92,7 +92,7 @@ public class Web3JClientTest implements Service {
      */
     @Test
     @Order(1)
-    public void getAccountListShouldWork() {
+    void getAccountListShouldWork() {
         List<String> accounts = ethereumClient.listAccounts();
         Assertions.assertTrue(accounts.size() > 0);
     }
@@ -102,7 +102,7 @@ public class Web3JClientTest implements Service {
      */
     @Test
     @Order(3)
-    public void transferFundsShouldWork() {
+    void transferFundsShouldWork() {
         List<String> accounts = ethereumClient.listAccounts();
         try {
             String account1 = accounts.get(1);
@@ -116,7 +116,7 @@ public class Web3JClientTest implements Service {
             long newBalanceAccount1 = ethereumClient.getBalanceOf(accounts.get(1)).longValue();
             //creating the checkbalance variable equal to old value plus the relative wei amount
             long checkBalance = oldBalanceAccount1 + (etherAmount * 1000000000000000000l);
-            Assertions.assertTrue(newBalanceAccount1 == checkBalance);
+            Assertions.assertEquals(checkBalance,newBalanceAccount1);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }
@@ -127,7 +127,7 @@ public class Web3JClientTest implements Service {
      */
     @Test
     @Order(4)
-    public void getBalanceShouldWork() {
+    void getBalanceShouldWork() {
         List<String> accounts = ethereumClient.listAccounts();
         String account1 = accounts.get(1);
         ethereumClient.setCredentials(ACCOUNT_PRIVATE_KEY);
@@ -142,7 +142,7 @@ public class Web3JClientTest implements Service {
      */
     @Test
     @Order(5)
-    public void deployContractShouldWork() throws Exception {
+    void deployContractShouldWork() throws Exception {
         EthWeb3JClient web3jClient = (EthWeb3JClient) ethereumClient;
         Web3j web3j = web3jClient.getWeb3j();
         BigInteger gasLimit = BigInteger.valueOf(GAS_LIMIT);
@@ -163,7 +163,7 @@ public class Web3JClientTest implements Service {
      */
     @Test
     @Order(6)
-    public void loadContractShouldWork() {
+    void loadContractShouldWork() {
         EthWeb3JClient web3jClient = (EthWeb3JClient) ethereumClient;
         Web3j web3j = web3jClient.getWeb3j();
         TransactionManager transactionManager = web3jClient.createNewTransactionManager(CHAIN_ID);
@@ -178,7 +178,7 @@ public class Web3JClientTest implements Service {
      * Loads the contract and invoke a transaction on it
      */
     @Test
-    public void interactWithContractShouldWork() {
+    void interactWithContractShouldWork() {
         List<String> accounts = ethereumClient.listAccounts();
         EthWeb3JClient web3jClient = (EthWeb3JClient) ethereumClient;
         Web3j web3j = web3jClient.getWeb3j();
@@ -194,9 +194,9 @@ public class Web3JClientTest implements Service {
             digest.update(dataToSign.getBytes(StandardCharsets.UTF_8));
             byte[] hash = digest.digest();
             receipt = dataRegistryContract.notarizeDocument(hash).send();
-            Assertions.assertTrue(receipt.getFrom().equals(accounts.get(0)));
+            Assertions.assertEquals(accounts.get(0), receipt.getFrom());
             List<DataRegistry.NotarizedEventResponse> notarizedEvents = dataRegistryContract.getNotarizedEvents(receipt);
-            Assertions.assertTrue(new String(notarizedEvents.get(0)._dataHash).equals(new String(hash)));
+            Assertions.assertEquals(new String(hash), new String(notarizedEvents.get(0)._dataHash));
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             Assertions.fail();

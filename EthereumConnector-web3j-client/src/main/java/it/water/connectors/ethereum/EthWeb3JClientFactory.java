@@ -31,13 +31,13 @@ import org.web3j.protocol.http.HttpService;
  * @Author Aristide Cittadino
  * Ethereum Web3J Client Factory.
  */
-@FrameworkComponent(properties = EthConstants.ETH_CONNECTOR_CLIENT_FACTORY+"="+EthConstants.ETH_CONNECTOR_CLIENT_FACTORY_WEB3J)
+@FrameworkComponent(properties = EthConstants.ETH_CONNECTOR_CLIENT_FACTORY + "=" + EthConstants.ETH_CONNECTOR_CLIENT_FACTORY_WEB3J)
 public class EthWeb3JClientFactory implements EthClientFactory {
     private EthBlockchain ethereumBlockChain;
 
     @Getter
     @Setter
-    private final String clientFactoryType = EthConstants.ETH_CONNECTOR_CLIENT_FACTORY_WEB3J;
+    private String clientFactoryWeb3j = EthConstants.ETH_CONNECTOR_CLIENT_FACTORY_WEB3J;
 
     @Override
     public EthClientFactory withEthereumBlockChain(EthBlockchain ethereumBlockChain) {

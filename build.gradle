@@ -47,8 +47,8 @@ allprojects {
 sonarqube {
     properties {
         // Configurazione globale del progetto Sonar
-        property "sonar.projectKey", "EthereumConnector"
-        property "sonar.projectName", "EthereumConnector"
+        property "sonar.projectKey", "water.EthereumConnector"
+        property "sonar.projectName", "water.EthereumConnector"
         property "sonar.projectVersion", project.waterVersion
 
         // Includes all folder and sources for submodules

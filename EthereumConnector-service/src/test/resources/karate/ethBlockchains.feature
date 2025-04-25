@@ -10,7 +10,7 @@ Feature: Check Blockchains Rest Api Response
     Given url serviceBaseUrl+'/water/ethereum/blockchains'
     # ---- Add entity fields here -----
     And request 
-    """ { "protocol": "http","host":"host","port":"123123"}; """
+    """ { "protocol": "http","host":"hostCustom","port":"123123"}; """
     # ---------------------------------
     When method POST
     Then status 200
@@ -22,7 +22,7 @@ Feature: Check Blockchains Rest Api Response
         "entityCreateDate":'#number',
         "entityModifyDate":'#number',
         "protocol":"http",
-        "host": 'host',
+        "host": 'hostCustom',
         "port":"123123"
        }
     """
@@ -39,7 +39,7 @@ Feature: Check Blockchains Rest Api Response
           "id":"#(entityId)",
           "entityVersion":1,
           "protocol":"http",
-          "host": 'host',
+          "host": 'hostCustomUpdate',
           "port":"123123"
     } 
     """
@@ -54,7 +54,7 @@ Feature: Check Blockchains Rest Api Response
         "entityCreateDate":'#number',
         "entityModifyDate":'#number',
         "protocol":"http",
-        "host": 'host',
+        "host": 'hostCustomUpdate',
         "port":"123123"
        }
     """
@@ -75,7 +75,7 @@ Feature: Check Blockchains Rest Api Response
         "entityCreateDate":'#number',
         "entityModifyDate":'#number',
         "protocol":"http",
-        "host": 'host',
+        "host": 'hostCustomUpdate',
         "port":"123123"
        }
     """
@@ -95,7 +95,7 @@ Feature: Check Blockchains Rest Api Response
         "entityCreateDate":'#number',
         "entityModifyDate":'#number',
         "protocol":"http",
-        "host": 'host',
+        "host": 'hostCustomUpdate',
         "port":"123123"
       }
     """

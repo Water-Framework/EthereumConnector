@@ -32,7 +32,7 @@ public class EthereumConnectorRestApiTest implements Service {
         //jwt token service is disabled, we just inject admin user for bypassing permission system
         //just remove this line if you want test with permission system working
         TestRuntimeUtils.impersonateAdmin(componentRegistry);
-        blockchain = new EthBlockchain("http", "localhost", "8585");
+        blockchain = new EthBlockchain("http", "localhostForRestTest", "8585");
         blockchainApi.save(blockchain);
     }
 

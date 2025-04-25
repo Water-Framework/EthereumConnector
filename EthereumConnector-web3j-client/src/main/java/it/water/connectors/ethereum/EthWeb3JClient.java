@@ -38,8 +38,8 @@ import org.web3j.utils.Convert;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author Aristide Cittadino
@@ -61,7 +61,7 @@ public class EthWeb3JClient implements EthClient {
         return new RawTransactionManager(web3j, credentials, chainId);
     }
 
-    public ContractGasProvider createContractGasProvider(final BigInteger gasPrice, final BigInteger gasLimit, final HashMap<String, BigInteger> functionsGasPrice, final HashMap<String, BigInteger> functionsGasLimit) {
+    public ContractGasProvider createContractGasProvider(final BigInteger gasPrice, final BigInteger gasLimit, final Map<String, BigInteger> functionsGasPrice, final Map<String, BigInteger> functionsGasLimit) {
         return new ContractGasProvider() {
             @Override
             public BigInteger getGasPrice(String contractFunc) {
