@@ -1,0 +1,9 @@
+{
+    "generator-hyperiot": {
+        "inner-project": true,
+        "project-type": "custom",
+        "projectName": "EthereumConnector-web3j-client",
+        "projectGroupId": "it.water.connectors.ethereum",
+        "projectVersion": "project.waterVersion"
+    }
+}

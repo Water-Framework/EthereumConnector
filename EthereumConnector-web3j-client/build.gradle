@@ -1,0 +1,41 @@
+dependencies {
+    //SLF4J
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: project.slf4jVersion
+    //lombok
+    implementation group: 'org.projectlombok', name: 'lombok', version: project.lombokVersion
+    annotationProcessor 'org.projectlombok:lombok:' + project.lombokVersion
+    //Atteo
+    implementation 'org.atteo.classindex:classindex:' + project.atteoClassIndexVersion
+    annotationProcessor('org.atteo.classindex:classindex:' + project.atteoClassIndexVersion)
+    //Water basic modules
+    implementation group: "it.water.core", name: "Core-api", version: project.waterVersion
+    implementation group: "it.water.core", name: "Core-model", version: project.waterVersion
+    implementation group: "it.water.core", name: "Core-interceptors", version: project.waterVersion
+    //Water Jakarta persistence
+    implementation 'it.water.repository.jpa:JpaRepository-api:'+project.waterVersion
+    implementation group: 'jakarta.transaction', name: 'jakarta.transaction-api', version: project.jakartaTransactionApiVersion
+    implementation group: 'jakarta.persistence', name: 'jakarta.persistence-api', version: project.jakartaPersistenceVersion
+    //Water Persistence
+    implementation group:'it.water.repository', name:'Repository-entity', version:project.waterVersion
+    implementation group:'it.water.repository', name:'Repository-persistence', version:project.waterVersion
+    implementation group:'it.water.repository', name:'Repository-service', version:project.waterVersion
+
+    implementation project(":EthereumConnector-api")
+    implementation project(":EthereumConnector-model")
+    implementation 'org.web3j:core:4.12.2'
+
+    testAnnotationProcessor 'org.projectlombok:lombok:' + project.lombokVersion
+    testAnnotationProcessor('org.atteo.classindex:classindex:' + project.atteoClassIndexVersion)
+    testImplementation group:'it.water.core',name:'Core-testing-utils',version:project.waterVersion
+    testImplementation 'org.awaitility:awaitility:4.2.0'
+    testImplementation 'org.mockito:mockito-core:4.6.1'
+    testImplementation 'org.mockito:mockito-junit-jupiter:4.6.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:' + project.junitJupiterVersion
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:' + project.junitJupiterVersion
+    testImplementation 'org.atteo.classindex:classindex:' + project.atteoClassIndexVersion
+}
+
+test {
+    useJUnitPlatform()
+}
+
