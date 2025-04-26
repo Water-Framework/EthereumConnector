@@ -64,7 +64,7 @@ class Web3JClientTest implements Service {
             ganacheProcess = pb.start();
             logger.info("Waiting for ganache process to start...");
             await()
-                    .atMost(10, TimeUnit.SECONDS)
+                    .atMost(20, TimeUnit.SECONDS)
                     .pollInterval(Duration.ofSeconds(1))
                     .ignoreExceptions()
                     .until(() -> ganacheProcess.isAlive());
