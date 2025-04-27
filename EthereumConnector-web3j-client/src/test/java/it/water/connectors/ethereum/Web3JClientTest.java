@@ -62,7 +62,7 @@ class Web3JClientTest implements Service {
     void initGanache() {
         localBlockChain = new EthBlockchain("http", "localhost", GANACHE_PORT);
         ProcessBuilder pb = new ProcessBuilder();
-        pb.command("ganache-cli", "-m", GANACHE_MNEMONIC, "-p", GANACHE_PORT,"--hardfork","london");
+        pb.command("ganache", "-m", GANACHE_MNEMONIC, "-p", GANACHE_PORT,"--hardfork","london");
         pb.redirectErrorStream(true);
         pb.redirectOutput(ProcessBuilder.Redirect.INHERIT);
         try {
