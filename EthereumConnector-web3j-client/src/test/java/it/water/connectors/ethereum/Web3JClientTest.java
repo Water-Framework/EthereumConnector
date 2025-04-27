@@ -18,8 +18,11 @@ import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.tx.TransactionManager;
 import org.web3j.tx.gas.ContractGasProvider;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.time.Duration;
@@ -60,6 +63,8 @@ class Web3JClientTest implements Service {
         localBlockChain = new EthBlockchain("http", "localhost", GANACHE_PORT);
         ProcessBuilder pb = new ProcessBuilder();
         pb.command("ganache-cli", "-m", GANACHE_MNEMONIC, "-p", GANACHE_PORT);
+        pb.redirectErrorStream(true);
+        pb.redirectOutput(ProcessBuilder.Redirect.INHERIT);
         try {
             ganacheProcess = pb.start();
             logger.info("Waiting for ganache process to start...");
@@ -67,7 +72,14 @@ class Web3JClientTest implements Service {
                     .atMost(20, TimeUnit.SECONDS)
                     .pollInterval(Duration.ofSeconds(1))
                     .ignoreExceptions()
-                    .until(() -> ganacheProcess.isAlive());
+                    .until(() -> {
+                        try (Socket socket = new Socket()) {
+                            socket.connect(new InetSocketAddress("localhost", Integer.parseInt(GANACHE_PORT)), 1000);
+                            return true;
+                        } catch (IOException e) {
+                            return false;
+                        }
+                    });
             ethereumClient = ethereumClientFactory.withEthereumBlockChain(localBlockChain).build();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
