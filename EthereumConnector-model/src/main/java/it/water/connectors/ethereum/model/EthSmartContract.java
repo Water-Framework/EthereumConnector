@@ -33,7 +33,7 @@ import lombok.*;
 @Getter
 @Setter(AccessLevel.PROTECTED)
 @ToString
-@EqualsAndHashCode(of = {"id", "contractClass", "name", "address", "blockchain"})
+@EqualsAndHashCode(of = {"contractClass", "name", "address", "blockchain"},callSuper = true)
 @AccessControl(availableActions = {CrudActions.SAVE, CrudActions.UPDATE, CrudActions.FIND, CrudActions.FIND_ALL, CrudActions.REMOVE},
         rolesPermissions = {
                 //Admin role can do everything

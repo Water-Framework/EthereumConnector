@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 public class EthBlockchainRepositoryImpl extends WaterJpaRepositoryImpl<EthBlockchain> implements BlockchainRepository {
 
     private static final String BLOCKCHIAN_CONTRACT_PERSISTENCE_UNIT = "ethereum-persistence-unit";
-    @SuppressWarnings("java:S1068")
+    @SuppressWarnings({ "java:S1068", "unused" })
     private static Logger logger = LoggerFactory.getLogger(EthBlockchainRepositoryImpl.class);
 
     public EthBlockchainRepositoryImpl() {

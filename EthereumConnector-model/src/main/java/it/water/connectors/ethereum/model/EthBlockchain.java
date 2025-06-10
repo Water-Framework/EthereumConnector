@@ -24,7 +24,7 @@ import java.util.Set;
 @Getter
 @Setter(AccessLevel.PROTECTED)
 @ToString
-@EqualsAndHashCode(of = {"id", "host","port"})
+@EqualsAndHashCode(of = {"host","port"},callSuper = true)
 @AccessControl(availableActions = {CrudActions.SAVE, CrudActions.UPDATE, CrudActions.FIND, CrudActions.FIND_ALL, CrudActions.REMOVE}, rolesPermissions = {
         //Admin role can do everything
         @DefaultRoleAccess(roleName = EthBlockchain.DEFAULT_MANAGER_ROLE, actions = {CrudActions.SAVE, CrudActions.UPDATE, CrudActions.FIND, CrudActions.FIND_ALL, CrudActions.REMOVE}),

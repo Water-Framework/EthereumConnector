@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 public class EthSmartContractRepositoryImpl extends WaterJpaRepositoryImpl<EthSmartContract> implements SmartContractRepository {
 
     private static final String SMART_CONTRACT_PERSISTENCE_UNIT = "ethereum-persistence-unit";
-    @SuppressWarnings("java:S1068")
+    @SuppressWarnings({ "java:S1068", "unused" })
     private static Logger logger = LoggerFactory.getLogger(EthSmartContractRepositoryImpl.class);
 
     public EthSmartContractRepositoryImpl() {

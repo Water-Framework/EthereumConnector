@@ -1,10 +1,18 @@
 package it.water.connectors.ethereum;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import it.water.connectors.ethereum.api.BlockchainApi;
 import it.water.connectors.ethereum.api.BlockchainRepository;
 import it.water.connectors.ethereum.api.BlockchainSystemApi;
 import it.water.connectors.ethereum.model.EthBlockchain;
-import it.water.connectors.ethereum.model.EthSmartContract;
 import it.water.core.api.bundle.Runtime;
 import it.water.core.api.model.PaginableResult;
 import it.water.core.api.model.Role;
@@ -22,10 +30,7 @@ import it.water.core.testing.utils.bundle.TestRuntimeInitializer;
 import it.water.core.testing.utils.junit.WaterTestExtension;
 import it.water.core.testing.utils.runtime.TestRuntimeUtils;
 import it.water.repository.entity.model.exceptions.DuplicateEntityException;
-import it.water.repository.entity.model.exceptions.NoResultException;
 import lombok.Setter;
-import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 /**
  * Generated with Water Generator.
@@ -70,6 +75,7 @@ class EthBlockchainApiTest implements Service {
     private RoleManager roleManager;
 
     //admin user
+    @SuppressWarnings("unused")
     private it.water.core.api.model.User adminUser;
     private it.water.core.api.model.User blockchainManagerUser;
     private it.water.core.api.model.User blockchainViewerUser;

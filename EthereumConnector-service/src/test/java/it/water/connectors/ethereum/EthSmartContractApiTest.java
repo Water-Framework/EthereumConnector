@@ -75,6 +75,7 @@ class EthSmartContractApiTest implements Service {
     private RoleManager roleManager;
 
     //admin user
+    @SuppressWarnings("unused")
     private it.water.core.api.model.User adminUser;
     private it.water.core.api.model.User smartContractManagerUser;
     private it.water.core.api.model.User smartContractViewerUser;

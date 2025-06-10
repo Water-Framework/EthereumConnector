@@ -192,6 +192,7 @@ class Web3JClientTest implements Service {
      *
      * @throws Exception
      */
+    @SuppressWarnings("deprecation")
     @Test
     @Order(5)
     void deployContractShouldWork() throws Exception {
