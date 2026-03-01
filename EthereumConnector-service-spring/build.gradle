@@ -61,4 +61,10 @@ publishing {
         	}
     }
  }
- 
+
+waterDescriptor {
+    moduleId    = 'it.water.ethereum.spring'
+    displayName = 'Ethereum Connector Spring'
+    description = 'Spring Boot runtime variant of Ethereum Connector'
+    inheritsFrom project(':EthereumConnector-service')
+}

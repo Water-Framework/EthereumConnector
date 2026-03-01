@@ -92,3 +92,14 @@ publishing {
         	}
     }
  }
+
+waterDescriptor {
+    moduleId    = 'it.water.ethereum'
+    displayName = 'Ethereum Connector'
+    description = 'Ethereum-compatible blockchain integration: blockchain network and smart contract metadata management via JPA'
+
+    input {
+        standardPin 'jdbc'
+        standardPin 'service-discovery'
+    }
+}
