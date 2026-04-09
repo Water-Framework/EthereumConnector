@@ -40,3 +40,13 @@ test {
     useJUnitPlatform()
 }
 
+// in order to publish the artifact of this module
+publishing {
+    publications {
+        water(MavenPublication) {
+            from components.java
+        }
+    }
+}
+
+

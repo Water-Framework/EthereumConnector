@@ -33,11 +33,12 @@ import org.web3j.protocol.http.HttpService;
  */
 @FrameworkComponent(properties = EthConstants.ETH_CONNECTOR_CLIENT_FACTORY + "=" + EthConstants.ETH_CONNECTOR_CLIENT_FACTORY_WEB3J)
 public class EthWeb3JClientFactory implements EthClientFactory {
+
     private EthBlockchain ethereumBlockChain;
 
     @Getter
     @Setter
-    private String clientFactoryWeb3j = EthConstants.ETH_CONNECTOR_CLIENT_FACTORY_WEB3J;
+    private String clientFactoryType; // used by spring to set framework component property
 
     @Override
     public EthClientFactory withEthereumBlockChain(EthBlockchain ethereumBlockChain) {
@@ -49,7 +50,10 @@ public class EthWeb3JClientFactory implements EthClientFactory {
 
     @Override
     public EthClient build() {
-        Web3j web3j = Web3j.build(new HttpService(ethereumBlockChain.getProtocol() + "://" + ethereumBlockChain.getHost() + ":" + ethereumBlockChain.getPort()));
+        Web3j web3j = Web3j.build(
+                new HttpService(ethereumBlockChain.getProtocol() +
+                        "://" + ethereumBlockChain.getHost() +
+                        ":" + ethereumBlockChain.getPort()));
         EthClient web3jClient = new EthWeb3JClient(web3j);
         this.reset();
         return web3jClient;
