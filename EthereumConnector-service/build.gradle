@@ -98,8 +98,11 @@ waterDescriptor {
     displayName = 'Ethereum Connector'
     description = 'Ethereum-compatible blockchain integration: blockchain network and smart contract metadata management via JPA'
 
-    input {
+    output {
         standardPin 'jdbc'
+    }
+
+    input {
         standardPin 'service-discovery'
     }
 }
