@@ -97,6 +97,9 @@ waterDescriptor {
     moduleId    = 'it.water.ethereum'
     displayName = 'Ethereum Connector'
     description = 'Ethereum-compatible blockchain integration: blockchain network and smart contract metadata management via JPA'
+    componentsPackage = 'it.water.connectors.ethereum.service'
+    repositoryPackage = 'it.water.connectors.ethereum.service.repository'
+    entitiesPackage   = 'it.water.connectors.ethereum.model'
 
     output {
         standardPin 'jdbc'
