@@ -49,6 +49,7 @@ public class EthWeb3JClient implements EthClient {
     private static Logger logger = LoggerFactory.getLogger(EthWeb3JClient.class);
     @Getter
     private final Web3j web3j;
+
     private Credentials credentials;
 
     public EthWeb3JClient(Web3j web3j) {
@@ -61,7 +62,11 @@ public class EthWeb3JClient implements EthClient {
         return new RawTransactionManager(web3j, credentials, chainId);
     }
 
-    public ContractGasProvider createContractGasProvider(final BigInteger gasPrice, final BigInteger gasLimit, final Map<String, BigInteger> functionsGasPrice, final Map<String, BigInteger> functionsGasLimit) {
+    public ContractGasProvider createContractGasProvider(
+            final BigInteger gasPrice,
+            final BigInteger gasLimit,
+            final Map<String, BigInteger> functionsGasPrice,
+            final Map<String, BigInteger> functionsGasLimit) {
         return new ContractGasProvider() {
             @Override
             public BigInteger getGasPrice(String contractFunc) {
