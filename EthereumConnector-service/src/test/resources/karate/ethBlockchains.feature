@@ -9,7 +9,7 @@ Feature: Check Blockchains Rest Api Response
     And header Accept = 'application/json'
     Given url serviceBaseUrl+'/water/ethereum/blockchains'
     # ---- Add entity fields here -----
-    And request 
+    And request
     """ { "protocol": "http","host":"hostCustom","port":"123123"}; """
     # ---------------------------------
     When method POST
@@ -21,27 +21,29 @@ Feature: Check Blockchains Rest Api Response
         "entityVersion":1,
         "entityCreateDate":'#number',
         "entityModifyDate":'#number',
+        "categoryIds": '#ignore',
+        "tagIds": '#ignore',
         "protocol":"http",
         "host": 'hostCustom',
         "port":"123123"
        }
     """
     * def entityId = response.id
-    
+
     # --------------- UPDATE -----------------------------
 
     Given header Content-Type = 'application/json'
     And header Accept = 'application/json'
     Given url serviceBaseUrl+'/water/ethereum/blockchains'
     # ---- Add entity fields here -----
-    And request 
-    """ { 
+    And request
+    """ {
           "id":"#(entityId)",
           "entityVersion":1,
           "protocol":"http",
           "host": 'hostCustomUpdate',
           "port":"123123"
-    } 
+    }
     """
     # ---------------------------------
     When method PUT
@@ -53,12 +55,14 @@ Feature: Check Blockchains Rest Api Response
         "entityVersion":2,
         "entityCreateDate":'#number',
         "entityModifyDate":'#number',
+        "categoryIds": '#ignore',
+        "tagIds": '#ignore',
         "protocol":"http",
         "host": 'hostCustomUpdate',
         "port":"123123"
        }
     """
-  
+
   # --------------- FIND -----------------------------
 
     Given header Content-Type = 'application/json'
@@ -74,12 +78,14 @@ Feature: Check Blockchains Rest Api Response
         "entityVersion":2,
         "entityCreateDate":'#number',
         "entityModifyDate":'#number',
+        "categoryIds": '#ignore',
+        "tagIds": '#ignore',
         "protocol":"http",
         "host": 'hostCustomUpdate',
         "port":"123123"
        }
     """
-    
+
   # --------------- FIND ALL -----------------------------
 
     Given header Content-Type = 'application/json'
@@ -94,12 +100,14 @@ Feature: Check Blockchains Rest Api Response
         "entityVersion":2,
         "entityCreateDate":'#number',
         "entityModifyDate":'#number',
+        "categoryIds": '#ignore',
+        "tagIds": '#ignore',
         "protocol":"http",
         "host": 'hostCustomUpdate',
         "port":"123123"
       }
     """
-  
+
   # --------------- DELETE -----------------------------
 
     Given header Content-Type = 'application/json'

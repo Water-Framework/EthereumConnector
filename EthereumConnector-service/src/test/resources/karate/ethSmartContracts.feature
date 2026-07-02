@@ -9,7 +9,7 @@ Feature: Check Smart Contracts Rest Api Response
     And header Accept = 'application/json'
     Given url serviceBaseUrl+'/water/ethereum/smart-contracts'
     # ---- Add entity fields here -----
-    And request 
+    And request
     """ { "contractClass": "exampleField","name":"contract","address":"address","transactionReceipt":"transaction","blockchainId": "#(blockchainId)"}; """
     # ---------------------------------
     When method POST
@@ -21,6 +21,8 @@ Feature: Check Smart Contracts Rest Api Response
         "entityVersion":1,
         "entityCreateDate":'#number',
         "entityModifyDate":'#number',
+        "categoryIds": '#ignore',
+        "tagIds": '#ignore',
         "address":"address",
         "contractClass": 'exampleField',
         "name":"contract",
@@ -29,15 +31,15 @@ Feature: Check Smart Contracts Rest Api Response
        }
     """
     * def entityId = response.id
-    
+
     # --------------- UPDATE -----------------------------
 
     Given header Content-Type = 'application/json'
     And header Accept = 'application/json'
     Given url serviceBaseUrl+'/water/ethereum/smart-contracts'
     # ---- Add entity fields here -----
-    And request 
-    """ { 
+    And request
+    """ {
           "id":"#(entityId)",
           "entityVersion":1,
           "address":"address",
@@ -45,7 +47,7 @@ Feature: Check Smart Contracts Rest Api Response
           "name":"contract",
           "transactionReceipt":"transaction",
           "blockchainId": "#(blockchainId)"
-    } 
+    }
     """
     # ---------------------------------
     When method PUT
@@ -57,6 +59,8 @@ Feature: Check Smart Contracts Rest Api Response
         "entityVersion":2,
         "entityCreateDate":'#number',
         "entityModifyDate":'#number',
+        "categoryIds": '#ignore',
+        "tagIds": '#ignore',
         "address":"address",
         "contractClass": 'exampleFieldUpdated',
         "name":"contract",
@@ -64,7 +68,7 @@ Feature: Check Smart Contracts Rest Api Response
         "blockchainId": #number
        }
     """
-  
+
   # --------------- FIND -----------------------------
 
     Given header Content-Type = 'application/json'
@@ -80,6 +84,8 @@ Feature: Check Smart Contracts Rest Api Response
         "entityVersion":2,
         "entityCreateDate":'#number',
         "entityModifyDate":'#number',
+        "categoryIds": '#ignore',
+        "tagIds": '#ignore',
         "address":"address",
         "contractClass": 'exampleFieldUpdated',
         "name":"contract",
@@ -87,7 +93,7 @@ Feature: Check Smart Contracts Rest Api Response
         "blockchainId": #number
        }
     """
-    
+
   # --------------- FIND ALL -----------------------------
 
     Given header Content-Type = 'application/json'
@@ -102,6 +108,8 @@ Feature: Check Smart Contracts Rest Api Response
         "entityVersion":2,
         "entityCreateDate":'#number',
         "entityModifyDate":'#number',
+        "categoryIds": '#ignore',
+        "tagIds": '#ignore',
         "address":"address",
         "contractClass": 'exampleFieldUpdated',
         "name":"contract",
@@ -109,7 +117,7 @@ Feature: Check Smart Contracts Rest Api Response
         "blockchainId": #number
       }
     """
-  
+
   # --------------- DELETE -----------------------------
 
     Given header Content-Type = 'application/json'
